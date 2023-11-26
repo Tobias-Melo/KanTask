@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <link rel="shortcut icon" href="../static/img/logos/shortcut.svg" type="image/x-icon">
+
+     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+
+     <link rel="stylesheet" href="../static/css/reset.css">
+     <link rel="stylesheet" href="./main.css">
+     <link rel="stylesheet" href="../templates/login/css/login.css">
+
+     <script src="../templates/home/js/google.js"></script>
+
+     <!-- Icones -->
+     <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+
+     <title>Grupos</title>
+</head>
+
+<body>
+
+     <div class="d-flex justify-content-center align-items-center vh-100">
+          <!-- img-fluid  -->
+          <div class="d-flex flex-column block-1">
+               <div class="">
+                    <img class="" width="150px" src="../static/img/logos/logo_dark.svg" alt="Logo da empresa KanTask">
+               </div>
+
+               <div class="flex fs-4 mt-0 pt-5 pb-4 lh-1">
+                    <p class="fw-bold mb-1 text-wlc">Bem-vindo(a)</p>
+                    <p>Entre ou crie um grupo</p>
+               </div>
+
+               <div>
+                    <form class="row g-3" onsubmit="return submitForm(event)">
+                         <div class="col-md-6">
+                              <label for="firstname" class="form-label">Nome</label>
+                              <input type="text" class="form-control" id="firstname" disabled readonly>
+                         </div>
+                         <div class="col-md-6">
+                              <label for="lastname" class="form-label">Sobrenome</label>
+                              <input type="text" class="form-control" id="lastname" disabled readonly>
+                         </div>
+                         <div class="col-12">
+                              <label for="inputEmail4" class="form-label">Email</label>
+                              <input type="text" class="form-control" id="email" disabled readonly>
+                         </div>
+
+                         <!-- CRIAR GRUPO -->
+                         <div class="col-md-6">
+                              <label for="group_name" class="form-label">Criar um Grupo</label>
+                              <input type="text" class="form-control" id="group_name">
+                         </div>
+                         <div class="col-md-6">
+                              <label for="created_group_code" class="form-label">Código do Grupo</label>
+                              <input type="text" class="form-control" id="created_group_code" disabled readonly>
+                         </div>
+
+                         <!-- ENTRAR EM GRUPO -->
+                         <div class="col-md-6">
+                              <label for="join_group_code" class="form-label">Código do Grupo Existente</label>
+                              <input type="text" class="form-control" id="join_group_code">
+                         </div>
+                         <div class="col-md-6">
+                              <label for="joined_group_name" class="form-label">Nome do Grupo</label>
+                              <input type="text" class="form-control" id="joined_group_name" disabled readonly>
+                         </div>
+
+
+                         <div class="col-12 ">
+                              <button type="submit" class="w-100 btn btn-primary" style="color: #fff;">Iniciar meu
+                                   Kanban</button>
+                         </div>
+                    </form>
+               </div>
+          </div>
+     </div>
+
+
+     <div class="toast-container position-fixed bottom-0 end-0 p-3">
+          <div class="toast">
+               <div class="toast-header">
+                    <strong class="me-auto" style="color: red;">Atenção!</strong>
+                    <button type="button" data-bs-dismiss="toast" aria-label="Close" class="btn-close"></button>
+               </div>
+               <div class="toast-body" id="error-message">
+
+               </div>
+          </div>
+     </div>
+
+     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="../templates/login/js/groups.js"></script>
+
+</body>
+
+</html>

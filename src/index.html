@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="../static/img/logos/shortcut.svg" type="image/x-icon">
+
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="../templates/home/css/home.css">
+
+  <!-- Icones -->
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+
+  <!-- <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script> -->
+  <script src="https://accounts.google.com/gsi/client" async></script>
+  <script src="../templates/home/js/google.js"></script>
+  
+  <title>KanTask</title>
+</head>
+
+<body>
+
+  <!-- Cabeçalho -->
+  <div class="container">
+
+    <header
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="#" class="d-inline-flex logo_head">
+          <img src="../static/img/logos/logo_dark.svg" alt="Logo da empresa KanTask.">
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 menu-options">
+        <li><a href="#" class="nav-link px-2 link-secondary">Início</a></li>
+        <li><a href="#recursos" class="nav-link px-2">Recursos</a></li>
+        <li><a href="#sobre" class="nav-link px-2">Sobre</a></li>
+        <li><a href="#preco" class="nav-link px-2">Preços</a></li>
+
+      </ul>
+
+      <div>
+        <div id="buttonDiv"></div>
+      </div>
+    </header>
+    
+  </div>
+  <!-- Fim do Cabeçalho -->
+
+
+
+  <!-- Slide frontal -->
+  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+        aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../static/img/home/slide-1.jpg" width="100%"
+          alt="Mulher mostrando o celular para colegas de trabalho em uma mesa.">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Simplifique a Gestão de Projetos com o Kanban!</h1>
+            <p class="opacity-75">Aumente a eficiência, colabore melhor e entregue resultados incríveis com nossa
+              solução Kanban. Comece gratuitamente e experimente a diferença.</p>
+              <div class="container buttonSlide">
+              <div id="buttonDiv_1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../static/img/home/slide-2.jpg" width="100%" alt="Pessoas reunidas em uma mesa de escritório.">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Transforme sua Equipe com o Poder do Kanban</h1>
+            <p>Do caos à clareza em um piscar de olhos. Com nosso software Kanban, você pode otimizar seu fluxo de
+              trabalho.</p>
+            <div class="container buttonSlide-2">
+              <div id="buttonDiv_2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../static/img/home/slide-3.jpg" width="100%"
+          alt="Homem apontando o dedo para a tela de um noteebok ao redor de colegas.">
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>Ganhe Produtividade com o KanTask na Ponta dos Dedos</h1>
+            <p>O futuro da gestão de projetos está aqui. Descubra como o Kanban pode revolucionar sua equipe.</p>
+            <div class="buttonSlide-3">
+            <div id="buttonDiv_3"></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+  <!-- Fim Slide frontal -->
+
+  <!-- Bloco Inicial -->
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-5 py-5">
+
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Gerencie Tarefas com Facilidade: <span
+            class="destaque-h1">Conheça Nossos Cards Kanban</span></h1>
+        <p class="lead">Nossa ferramenta Kanban oferece uma maneira intuitiva e eficaz de gerenciar tarefas com cards.
+          Organize suas atividades, defina prioridades e acompanhe o progresso de maneira simples.</p>
+      </div>
+
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="../static/img/home/kanban.jpg" class="d-block mx-lg-auto img-fluid shadow rounded-4"
+          alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+    </div>
+  </div>
+  <!-- Fim Bloco Inicial -->
+
+  <!-- Recursos -->
+  <div class="container px-4 py-5" id="recursos">
+    <h2 class="border-bottom destaque-h1">Recursos</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="icon-rec">
+          <i class="fi fi-sr-plus"></i>
+        </div>
+        <h3 class="fs-2 text-body-emphasis">Criar tarefas com um único clique</h3>
+        <p>Nossa plataforma simplifica o processo de criação de tarefas. Com um único clique, você pode gerar novas
+          tarefas de forma rápida e descomplicada. Isso permite que você comece a trabalhar de imediato, economizando
+          tempo e eliminando obstáculos na entrada de informações.</p>
+        <a href="#" class="icon-link destaque-link">
+          Criar tarefas agora!
+          <svg class="bi">
+            <use xlink:href="#chevron-right"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="icon-rec">
+          <i class="fi fi-rr-briefcase"></i>
+        </div>
+        <h3 class="fs-2 text-body-emphasis">Atribuir responsabilidades de forma clara</h3>
+        <p>O nosso sistema torna a atribuição de tarefas uma tarefa simples e transparente. Você pode designar
+          responsabilidades de maneira clara e eficaz, garantindo que cada membro da equipe saiba exatamente o que deve
+          fazer. Isso promove a responsabilidade e a colaboração, resultando em uma equipe mais produtiva e alinhada.
+        </p>
+        <a href="#" class="icon-link destaque-link">
+          Quero conhecer!
+          <svg class="bi">
+            <use xlink:href="#chevron-right"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="icon-rec">
+          <i class="fi fi-rr-time-quarter-past"></i>
+        </div>
+        <h3 class="fs-2 text-body-emphasis">Visualizar o status de cada tarefa em tempo real</h3>
+        <p>Mantenha-se informado sobre o status de todas as tarefas, em tempo real. Com a nossa plataforma, você pode
+          monitorar o progresso de cada tarefa, identificar potenciais gargalos e tomar decisões informadas para
+          otimizar o fluxo de trabalho. Tenha uma visão completa do projeto e aja de forma proativa quando necessário.
+        </p>
+        <a href="#" class="icon-link destaque-link">
+          Vamos lá!
+          <svg class="bi">
+            <use xlink:href="#chevron-right"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Fim Recursos -->
+
+
+  <!-- Sobre -->
+  <div class="px-4 pt-5 my-5 text-center border-bottom" id="sobre">
+    <h2 class="fw-bold destaque-h1">Sobre</h2>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Somos uma equipe apaixonada por métodos ágeis, e nosso objetivo é simplificar a gestão de
+        projetos
+        para que você possa alcançar resultados extraordinários. <span class="destaque-h1">Nossa jornada começou com a
+          busca por maneiras mais eficazes de trabalhar, e encontramos no Kanban a chave para o sucesso.
+        </span>Desde então, dedicamos nosso tempo e energia ao desenvolvimento de uma solução Kanban de ponta, projetada
+        para atender às suas necessidades. Acreditamos que a gestão de projetos
+        não precisa ser complicada. Ela pode ser eficiente, transparente e altamente produtiva.</p>
+    </div>
+    <div class="overflow-hidden" style="max-height: 30vh;">
+      <div class="container px-5">
+        <img src="../static/img/home/kanban.jpg" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image"
+          width="700" height="500" loading="lazy">
+      </div>
+    </div>
+  </div>
+  <!-- Fim Sobre -->
+
+  <!-- Preços -->
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-5 py-5">
+
+      <div class="col-lg-6">
+        <h1 class="fw-bold lh-1 mb-3 destaque-h1">Preços</h1>
+        <p class="lead">É isso que mesmo que você está vendo! O KanTask é totalmente gratuito, você pode aproveitar
+          todas as funcionalidades e ferramentas que o nosso kanban te disponibiliza.<br>Aproveite já!</p>
+      </div>
+
+      <div class="col-10 col-sm-8 col-lg-4">
+        <div class="card shadow-sm">
+          <div>
+            <h4 class="rounded-3">Grátis</h4>
+
+          </div>
+          <div class="p-3">
+            <h1 class="card-title pricing-card-title">R$0<small class="text-body-secondary fw-light">/mês</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li><i class="fi fi-sr-check-circle icon-p"></i>Cooperação entre equipes</li>
+              <li><i class="fi fi-sr-check-circle icon-p"></i>KanBan completo</li>
+              <li><i class="fi fi-sr-check-circle icon-p"></i>Acesso total</li>
+              <li></li>
+            </ul>
+            <div class="container">
+              <div id="buttonDiv_4" class="w-100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fim Preços -->
+    
+    <!-- Rodapé -->
+    <div class="container">
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Início</a></li>
+          <li class="nav-item"><a href="#recursos" class="nav-link px-2 text-body-secondary">Recursos</a></li>
+          <li class="nav-item"><a href="#sobre" class="nav-link px-2 text-body-secondary">Sobre</a></li>
+          <li class="nav-item"><a href="#preco" class="nav-link px-2 text-body-secondary">Preços</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">© 2023 KanTask</p>
+        
+      </footer>
+    </div>
+    <!-- Fim Rodapé -->
+
+
+
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+</body>
+
+</html>

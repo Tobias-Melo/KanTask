@@ -1,0 +1,141 @@
+:root {
+
+     /* Cores Primárias */
+     --main-color: #202020;
+     --primary-color: #FF5000;
+     --secondary-color: #FEAF48;
+     --light-color: #ADCBDD;
+     --basic-color: #ffffff;
+
+     /* Sombras */
+     --main-color-s: #333333;
+     --primary-color-s: #FF5000;
+     --secondary-color-s: #BF8436;
+     --light-color-s: #99B4C4;
+     --basic-color-s: #ffffff;
+     --gray-color: #F8F8F8;
+     --gray-color-s: #D1D1D1;
+
+     --gray-color-f: #dfdfdf;
+
+}
+
+/* Cabeçalho */
+
+.logo_head {
+     width: 100px;
+}
+
+.menu-options a{
+     color: var(--main-color);
+     font-size: 0.9rem;
+}
+
+.menu-options a:hover{
+     color: var(--primary-color);
+}
+
+/* Fim do cabeçalho */
+
+
+/* Slide frontal */
+.carousel-item {
+     max-height: 500px;
+}
+
+.carousel-item img{
+     filter: brightness(0.5);
+     margin-top: -35vh;
+}
+
+.buttonSlide {
+     display: flex;
+     align-items: center;
+     justify-content: left;
+}
+
+.buttonSlide-2 {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.buttonSlide-3 {
+     display: flex;
+     align-items: center;
+     justify-content: right;
+}
+
+
+@media (max-width: 1160px) {
+     .carousel-item img{
+          margin-top: 0;
+     }
+
+}
+
+
+@media (max-width: 450px) {
+     .carousel-item img{
+          margin-top: 0;
+     }
+
+     .carousel-caption {
+          font-size: 12px;
+     }
+
+     .carousel-caption h1 {
+          font-size: 25px;
+     }
+
+}
+
+/* Bloco Inicial */
+
+.destaque-h1 {
+     color: var(--primary-color);
+}
+
+.destaque-link {
+     color: var(--primary-color);
+     text-decoration: underline var(--primary-color);
+}
+
+/* Recursos */
+
+.icon-rec {
+     background-color: var(--primary-color);
+     color: var(--basic-color);
+     display: inline-flex;
+     padding: 10px;
+     border-radius: 5px;
+     line-height: 0.5;
+     margin-bottom: 12px;
+}
+
+/* Preços */
+
+.card h4 {
+     background-color: var(--gray-color);
+     border-bottom: var(--gray-color-s) solid 1px;
+     padding: 10px;
+}
+
+.icon-p {
+     color: var(--primary-color);
+     padding: 0 8px 0 0;
+}
+
+.btn-p {
+     background-color: var(--primary-color);
+     color: var(--basic-color);
+     padding: 10px;
+     border: none;
+     border-radius: 10px;
+}
+
+.btn-p:hover {
+     background-color: var(--primary-color);
+     opacity: 0.8789;
+     color: var(--basic-color);
+}

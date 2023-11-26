@@ -1,0 +1,35 @@
+:root {
+
+     /* Cores Primárias */
+     --main-color: #202020;
+     --primary-color: #FF5000;
+     --secondary-color: #FEAF48;
+     --light-color: #ADCBDD;
+     --basic-color: #ffffff;
+
+     /* Sombras */
+     --main-color-s: #333333;
+     --primary-color-s: #FF5000;
+     --secondary-color-s: #BF8436;
+     --light-color-s: #99B4C4;
+     --basic-color-s: #ffffff;
+     --gray-color: #F8F8F8;
+     --gray-color-s: #D1D1D1;
+
+}
+
+/* CONTENT */
+
+.text-wlc {
+     color: var(--primary-color);
+}
+
+.block-1 {
+     width: 25%;
+}
+
+@media (max-width: 1200px)  {
+     .block-1 {
+          width: 70%;
+     }
+}
