@@ -39,6 +39,7 @@ if (!empty($jsonObj->request_type) && $jsonObj->request_type == 'user_auth') {
                 // Update user data if already exists
                 $query = "UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', picture = '$picture', modified = NOW() WHERE oauth_provider = '$oauth_provider' AND oauth_uid = '$oauth_uid'";
                 $update = $db->query($query);
+
                 $output['redirect'] = 'workspace.html';
                 $output['status'] = 1;
                 $output['msg'] = 'Usuário autenticado com sucesso!';
@@ -53,6 +54,7 @@ if (!empty($jsonObj->request_type) && $jsonObj->request_type == 'user_auth') {
                 // Insert user data
                 $query = "INSERT INTO users VALUES (NULL, '$oauth_provider', '$oauth_uid', '$first_name', '$last_name', '$email', '$picture', NOW(), NOW())";
                 $insert = $db->query($query);
+
                 $output['redirect'] = 'login.html';
                 $output['status'] = 1;
                 $output['msg'] = 'Usuário não encontrado. Redirecionando para a página de login.';
@@ -98,6 +100,7 @@ if (!empty($jsonObj->request_type) && $jsonObj->request_type == 'create_group') 
     $check_query = "SELECT * FROM groups WHERE name = '$group_name'";
     $check_result = $db->query($check_query);
 
+
     if ($check_result->num_rows > 0) {
         // O nome do grupo já existe, retorna uma mensagem de erro
         $output = [
@@ -112,12 +115,26 @@ if (!empty($jsonObj->request_type) && $jsonObj->request_type == 'create_group') 
         $insert_query = "INSERT INTO groups (name, cod_group, creator_id) VALUES ('$group_name', '$unique_code', '$oauth_uid')";
         $insert_result = $db->query($insert_query);
 
+        $insert_query_group = "INSERT INTO groups_users (cod_group, oauth_uid) VALUES ('$unique_code', '$oauth_uid')";
+        $insert_result_group = $db->query($insert_query_group);
+
+        $users_group = "SELECT DISTINCT gp.name FROM kantask.groups_users g
+        LEFT JOIN kantask.groups as gp ON gp.cod_group = g.cod_group";
+
+        $users_query = $db->query($users_group);
+
+
+        $users_data = $users_query->fetch_assoc();
+        $users_name = $users_data['name'];
+
+
         if ($insert_result) {
             $output = [
                 'status' => 1,
                 'msg' => 'Grupo criado com sucesso!',
                 'group_code' => $unique_code,
                 'group_name' => $group_name,
+                'list_name' => $users_name,
             ];
         } else {
             $output = [
@@ -148,6 +165,15 @@ if (!empty($jsonObj->request_type) && $jsonObj->request_type == 'join_group') {
         $group_data = $check_result->fetch_assoc();
         $group_name = $group_data['name'];
 
+        $users_group = "SELECT DISTINCT gp.name FROM kantask.groups_users g
+        LEFT JOIN kantask.groups as gp ON gp.cod_group = g.cod_group";
+
+        $users_query = $db->query($users_group);
+
+
+        $users_data = $users_query->fetch_assoc();
+        $users_name = $users_data['name'];
+
 
         $insert_query = "INSERT INTO groups_users (cod_group, oauth_uid) VALUES ('$group_code', '$oauth_uid')";
         $insert_result = $db->query($insert_query);
@@ -156,6 +182,7 @@ if (!empty($jsonObj->request_type) && $jsonObj->request_type == 'join_group') {
             'status' => 1,
             'msg' => 'Entrou no grupo com sucesso!',
             'group_name' => $group_name,
+            'list_name' => $users_name,
             // Adicione o nome do grupo à resposta se necessário
         ];
     } else {
@@ -169,3 +196,15 @@ if (!empty($jsonObj->request_type) && $jsonObj->request_type == 'join_group') {
 
     echo json_encode($output);
 }
+
+
+$users_group = "SELECT DISTINCT gp.name FROM kantask.groups_users g
+LEFT JOIN kantask.groups as gp ON gp.cod_group = g.cod_group";
+
+$users_query = $db->query($users_group);
+
+$users_data = $users_query->fetch_assoc();
+$users_name = $users_data['name'];
+
+// Enviar a variável para o frontend usando JSON
+$users_json = json_encode(array('users_name' => $users_name));

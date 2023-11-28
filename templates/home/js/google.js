@@ -26,16 +26,18 @@ function handleCredentialResponse(response) {
      })
           .then(response => {
                if (response.ok) {
+                    console.log(response)
                     return response.text();
                } else {
                     throw new Error('Erro na requisição. Status: ' + response.status);
                }
           })
           .then(data => {
+               console.log(data)
                try {
+
                     const jsonData = JSON.parse(data);
 
-                    console.log(jsonData)
 
                     if (jsonData.status === 1) {
 
@@ -46,6 +48,8 @@ function handleCredentialResponse(response) {
                               "img": jsonData.pdata.img,
                               "id": jsonData.pdata.id,
                          }));
+
+                         
 
 
                          // Redireciona para a página apropriada
@@ -76,11 +80,7 @@ function handleCredentialResponse(response) {
 }
 
 // Sign out the user
-function signOut(authID) {
-     document.getElementsByClassName("pro-data")[0].innerHTML = '';
-     document.querySelector("#btnWrap").classList.remove("hidden");
-     document.querySelector(".pro-data").classList.add("hidden");
-}
+
 
 window.onload = function () {
      if (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("")) {

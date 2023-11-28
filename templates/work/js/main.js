@@ -1,6 +1,13 @@
 const $modal = document.getElementById("modal");
 
-const $creatorInput = document.getElementById("creator");
+const dados = localStorage.getItem("dados");
+const dadosValid = JSON.parse(dados);
+
+const $creatorInput = dadosValid.nome;
+
+
+const $creatorPut = document.getElementById("creator")
+
 const $descriptionInput = document.getElementById("task");
 const $priorityInput = document.getElementById("priority");
 const $deadlineInput = document.getElementById("deadline");
@@ -24,6 +31,8 @@ generateCards();
 
 function openModal(data_column) {
      $modal.style.display = "flex";
+
+     $creatorPut.value = $creatorInput
 
      $columnInput.value = data_column;
 
@@ -61,8 +70,26 @@ function openModalToEdit(id) {
      $priorityInput.value = task.priority;
      $deadlineInput.value = task.deadline;
      $columnInput.value = task.column;
-     $creatorInput.value = task.creator;
+     $creatorPut.value = task.creator;
+
+
 }
+
+function signOut() {
+     google.accounts.id.disableAutoSelect();
+     google.accounts.id.prompt((notification) => {
+          if (notification.isNotDisplayed()) {
+               // The One Tap dialog is not displayed, perform your own sign-out logic here
+
+               window.location.href = 'index.html';
+               // Clear local storage or perform any other necessary actions
+          } else {
+               // The One Tap dialog is displayed, let it handle the sign-out
+               notification.dismiss();
+          }
+     });
+}
+
 
 function closeModal() {
      $modal.style.display = "none";
@@ -130,12 +157,13 @@ function generateCards() {
 function createTask() {
      const newTask = {
           id: Math.floor(Math.random() * 9999999),
-          creator: $creatorInput.value,
+          creator: $creatorInput,
           description: $descriptionInput.value,
           priority: $priorityInput.value,
           deadline: $deadlineInput.value,
           column: $columnInput.value,
      }
+
 
      taskList.push(newTask);
 
@@ -143,6 +171,12 @@ function createTask() {
 
      closeModal();
      generateCards();
+
+     const toastContentCreate = document.querySelector(".create-toast");
+     const toastCreate = new bootstrap.Toast(toastContentCreate);
+     document.getElementById("create-message").innerText = "Card criado com sucesso!";
+
+     toastCreate.show();
 }
 
 function updateTask() {
@@ -152,7 +186,7 @@ function updateTask() {
           priority: $priorityInput.value,
           deadline: $deadlineInput.value,
           column: $columnInput.value,
-          creator: $creatorInput.value,
+          creator: $creatorPut.value,
      }
 
      const index = taskList.findIndex(function (task) {
@@ -165,6 +199,12 @@ function updateTask() {
 
      closeModal();
      generateCards();
+
+     const toastContentEdit = document.querySelector(".edit-toast");
+     const toastEdit = new bootstrap.Toast(toastContentEdit);
+     document.getElementById("edit-message").innerText = "Card editado com sucesso!";
+
+     toastEdit.show();
 }
 
 
@@ -182,6 +222,12 @@ function deleteTask() {
           localStorage.setItem("tasks", JSON.stringify(taskList));
           closeModal();
           generateCards();
+          /* Alert the copied text */
+          const toastContentDel = document.querySelector(".del-toast");
+          const toastDel = new bootstrap.Toast(toastContentDel);
+          document.getElementById("del-message").innerText = "Card deletado com sucesso!";
+
+          toastDel.show();
      }
 }
 
@@ -226,3 +272,76 @@ function drop_handler(ev) {
      const column_id = ev.target.dataset.column;
      changeColumn(task_id, column_id);
 }
+
+
+// GRUPOS E VISUALIZAÇÃO DELES
+
+function copyToClipboard() {
+     /* Get the text field */
+     var copyText = document.getElementById("copyGroup");
+
+     /* Create a temporary input element */
+     var tempInput = document.createElement("input");
+     tempInput.value = copyText.value;
+
+     /* Append the temporary input to the document */
+     document.body.appendChild(tempInput);
+
+     /* Select the text in the temporary input */
+     tempInput.select();
+     tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+
+     /* Copy the text inside the temporary input to the clipboard */
+     document.execCommand("copy");
+
+     /* Remove the temporary input from the document */
+     document.body.removeChild(tempInput);
+
+     /* Alert the copied text */
+     const toastContentCopy = document.querySelector(".copy-toast");
+     const toastCopy = new bootstrap.Toast(toastContentCopy);
+     document.getElementById("copy-message").innerText = "Texto copiado com sucesso!";
+
+     toastCopy.show();
+
+}
+
+var groups = JSON.parse(localStorage.getItem("grupo"));
+const $inviteCard = document.getElementById("inviteCard");
+const $subsCard = document.getElementById("subsCard");
+const $groupsCard = document.getElementById("groupsCard");
+
+
+
+function viewGroup() {
+
+     $inviteCard.style.display = "none"
+     $groupsCard.style.visibility = "visible"
+
+     const groupsDiv = `
+               <div class="d-flex mb-3">
+                    <input id="copyGroup" value="${groups.cod_gp}" disabled readonly 
+                    style="width: 37%; border: none;">
+                    <i class="bi bi-copy ps-2" style="color: var(--bs-primary); font-size: 16px;" onclick="copyToClipboard()"></i>
+               </div>
+               <p class="fw-semibold">${groups.nome_gp}</p>
+     `;
+
+     $groupsCard.innerHTML = groupsDiv;
+}
+
+
+
+
+fetch('auth_init.php', {
+     method: 'GET',
+     headers: {
+          'Content-Type': 'application/json',
+     },
+
+})
+     .then((result) => result.text())
+     .then((userList) => { console.log(userList) })
+     .catch((error) => {
+          console.error(error);
+     })

@@ -47,9 +47,12 @@ function submitForm(e) {
                     if (isCreateGroup) {
                         document.getElementById('created_group_code').value = jsonData.group_code;
 
+
+
                         localStorage.setItem("grupo", JSON.stringify({
                             "nome_gp": jsonData.group_name,
                             "cod_gp": jsonData.group_code,
+                            "list_name":  jsonData.list_name,
                         }));
                     } else {
                         console.log("chegou aqui")
@@ -75,3 +78,9 @@ function submitForm(e) {
 
     return false; // Evitar que o evento do formulário prossiga com o comportamento padrão
 }
+
+
+
+
+
+

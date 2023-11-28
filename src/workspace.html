@@ -17,7 +17,11 @@
      <link rel='stylesheet'
           href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
      <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+     
+     <!-- <script src="../templates/home/js/google.js"></script> -->
 
+     <script src="https://accounts.google.com/gsi/client" async></script>
+     
      <title>KanTask - Work</title>
 </head>
 
@@ -45,9 +49,11 @@
           </div>
           <div class="px-4">
                <p class="fs-4 fw-light mb-1"><span class="fw-semibold" style="color: var(--bs-primary);" id="userName">
-               </span>, hora de trabalhar!</p>
-
-               <div class="d-flex align-items-center" href="#" style="cursor: pointer;; color: var(--bs-gray-600);">
+                    </span>, hora de trabalhar!</p>
+                    <!-- signOut -->
+               <div class="d-flex align-items-center" href="#" 
+               style="width: fit-content; cursor: pointer;; color: var(--bs-gray-600);"
+               onclick="signOut()"> 
                     <i class="bi bi-box-arrow-right pe-1"></i>
                     <p class="m-0">Sair</p>
                </div>
@@ -57,7 +63,7 @@
 
 
      <div class="row mw-100">
-          <div onclick="openModal(1)" class="card ms-5 mt-5 card-stl"
+          <div onclick="openModal(1)" class="card ms-5 mt-5 card-stl justify-content-center"
                style="cursor: pointer; background-color: var(--bs-gray-100); border-color: var(--bs-green);">
                <div class="text-decoration-none text-dark">
                     <div class="card-body">
@@ -67,7 +73,8 @@
                </div>
           </div>
 
-          <div class="card card-stl ms-3 mt-5"
+
+          <div class="card card-stl ms-3 mt-5 justify-content-center" onclick="viewGroup()" id="inviteCard"
                style="cursor: pointer; background-color: var(--bs-gray-100); border-color: var(--bs-gray-300);">
                <div class="text-decoration-none text-dark">
                     <div class="card-body">
@@ -76,6 +83,69 @@
                     </div>
                </div>
           </div>
+
+          <div class="card card-stl ms-3 mt-5 justify-content-center" id="groupsCard"
+               style="visibility: hidden; cursor: pointer; background-color: var(--bs-gray-100); border-color: var(--bs-gray-300);">
+               <div class="text-decoration-none text-dark">
+                    <div class="card-body" id="subsCard">
+
+                    </div>
+               </div>
+          </div>
+
+          <!--  MESSAGES POPUPS -->
+
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+               <div class="toast copy-toast align-items-center text-bg-primary border-0" style="transition: 0.3s;">
+                    <div class="d-flex">
+                         <div class="toast-body" id="copy-message" style="color: var(--bs-white);">
+
+                         </div>
+                         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                              aria-label="Close"></button>
+                    </div>
+               </div>
+          </div>
+
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+               <div class="toast del-toast" style="transition: 0.3s;">
+                    <div class="toast-header">
+                         <strong class="me-auto" style="color: var(--bs-red);">Atenção!</strong>
+                         <button type="button" data-bs-dismiss="toast" aria-label="Close" class="btn-close"></button>
+                    </div>
+                    <div class="toast-body" id="del-message">
+
+                    </div>
+               </div>
+          </div>
+
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+               <div class="toast create-toast" style="transition: 0.3s;">
+                    <div class="toast-header">
+                         <strong class="me-auto" style="color: var(--bs-green);">Boa!</strong>
+                         <button type="button" data-bs-dismiss="toast" aria-label="Close" class="btn-close"></button>
+                    </div>
+                    <div class="toast-body" id="create-message">
+
+                    </div>
+               </div>
+          </div>
+
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+               <div class="toast edit-toast" style="transition: 0.3s;">
+                    <div class="toast-header">
+                         <strong class="me-auto" style="color: var(--bs-primary);">Opa!</strong>
+                         <button type="button" data-bs-dismiss="toast" aria-label="Close" class="btn-close"></button>
+                    </div>
+                    <div class="toast-body" id="edit-message">
+
+                    </div>
+               </div>
+          </div>
+
+          <!--  MESSAGES POPUPS -->
+
+     </div>
      </div>
 
      <div id="modal">
@@ -96,7 +166,7 @@
 
                     <div class="form-group">
                          <label for="creator">Criador</label>
-                         <input type="text" id="creator" disabled value="Tobias Melo">
+                         <input type="text" id="creator" disabled>
                     </div>
 
                     <div class="form-group">
