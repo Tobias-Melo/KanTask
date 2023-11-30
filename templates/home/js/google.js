@@ -56,7 +56,7 @@ function handleCredentialResponse(response) {
                          if (jsonData.redirect) {
                               window.location.href = jsonData.redirect;
                          } else {
-                              window.location.href = 'workspace.html';
+                              window.location.href = 'workspace.php';
                          }
                     } else {
                          const errorMessageElement = document.getElementById("error-message");

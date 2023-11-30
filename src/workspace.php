@@ -19,6 +19,34 @@
      <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
      
      <!-- <script src="../templates/home/js/google.js"></script> -->
+     <?php 
+
+          require_once 'dbConfig.php';
+
+          $users_group = "SELECT DISTINCT us.first_name FROM kantask.groups_users g
+          LEFT JOIN kantask.groups as gp ON gp.cod_group = g.cod_group
+          LEFT JOIN kantask.users as us ON us.oauth_uid = g.oauth_uid";
+          
+          $users_query = $db->query($users_group);
+          
+          $users_data = array(); // Inicializar um array para armazenar todos os usuários
+          
+          while ($row = $users_query->fetch_assoc()) {
+              $users_data[] = $row['first_name'];
+          }
+          
+          // Enviar a variável para o frontend usando JSON
+          $users_json = json_encode(array('users_name' => $users_data));
+          
+     ?>
+
+     <script>
+
+        var usersName = <?php echo $users_json; ?>;
+        // Armazenar a variável no localStorage
+        localStorage.setItem('usersGroup', JSON.stringify(usersName));
+    </script>
+
 
      <script src="https://accounts.google.com/gsi/client" async></script>
      
@@ -34,13 +62,55 @@
 
           <ul class="nav nav-pills">
                <li class="nav-item px-3">
-                    <a href="#" class="nav-link d-flex align-items-center p-0" aria-current="page">
+                    <button 
+                    class="nav-link d-flex align-items-center p-0" 
+                    type="button"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                         
                          <i class="fi fi-rr-users-alt p-2" style="font-size: 20px;"></i>
-                         <span style="color: #000;">Pessoas</span></a>
+                         <span style="color: #000;">Pessoas</span>
+                    </button>
                </li>
 
           </ul>
      </header>
+
+
+<!-- MODAL DE USUARIOS DO GRUPO -->
+
+<div class="modal" tabindex="-1" id="exampleModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Pessoas do Grupo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <?php
+         $users_group = "SELECT DISTINCT us.first_name FROM kantask.groups_users g
+         LEFT JOIN kantask.groups as gp ON gp.cod_group = g.cod_group
+         LEFT JOIN kantask.users as us ON us.oauth_uid = g.oauth_uid";
+         
+         $users_query = $db->query($users_group);
+         
+         echo '<ul class="list-group">';
+         
+         while ($row = $users_query->fetch_assoc()) {
+             echo '<li class="list-group-item">' . $row['first_name'] . '</li>';
+         }
+         
+         echo '</ul>';          
+        ?>
+     </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE USUARIOS DO GRUPO -->
+
+
+
+
 
      <div class="d-flex align-items-center justify-content-start px-5 mt-5">
           <div class=""

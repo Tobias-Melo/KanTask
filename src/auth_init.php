@@ -40,7 +40,7 @@ if (!empty($jsonObj->request_type) && $jsonObj->request_type == 'user_auth') {
                 $query = "UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', picture = '$picture', modified = NOW() WHERE oauth_provider = '$oauth_provider' AND oauth_uid = '$oauth_uid'";
                 $update = $db->query($query);
 
-                $output['redirect'] = 'workspace.html';
+                $output['redirect'] = 'workspace.php';
                 $output['status'] = 1;
                 $output['msg'] = 'Usuário autenticado com sucesso!';
                 $output['pdata'] = [
@@ -198,13 +198,4 @@ if (!empty($jsonObj->request_type) && $jsonObj->request_type == 'join_group') {
 }
 
 
-$users_group = "SELECT DISTINCT gp.name FROM kantask.groups_users g
-LEFT JOIN kantask.groups as gp ON gp.cod_group = g.cod_group";
 
-$users_query = $db->query($users_group);
-
-$users_data = $users_query->fetch_assoc();
-$users_name = $users_data['name'];
-
-// Enviar a variável para o frontend usando JSON
-$users_json = json_encode(array('users_name' => $users_name));

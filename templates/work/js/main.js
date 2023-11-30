@@ -333,15 +333,15 @@ function viewGroup() {
 
 
 
-fetch('auth_init.php', {
-     method: 'GET',
-     headers: {
-          'Content-Type': 'application/json',
-     },
+// fetch('auth_init.php', {
+//      method: 'GET',
+//      headers: {
+//           'Content-Type': 'application/json',
+//      },
 
-})
-     .then((result) => result.text())
-     .then((userList) => { console.log(userList) })
-     .catch((error) => {
-          console.error(error);
-     })
+// })
+//      .then((result) => result)
+//      .then((userList) => { console.log(userList.json()) })
+//      .catch((error) => {
+//           console.error(error);
+//      })

@@ -59,7 +59,7 @@ function submitForm(e) {
                     }
 
                     console.log("chegou aqui");
-                    window.location.href = 'workspace.html';
+                    window.location.href = 'workspace.php';
                 } else {
                     const toastContent = document.querySelector(".toast");
                     const toast = new bootstrap.Toast(toastContent);
