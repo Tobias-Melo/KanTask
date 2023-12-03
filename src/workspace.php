@@ -34,16 +34,14 @@
           while ($row = $users_query->fetch_assoc()) {
               $users_data[] = $row['first_name'];
           }
-          
-          // Enviar a variável para o frontend usando JSON
+     
           $users_json = json_encode(array('users_name' => $users_data));
-          
      ?>
 
      <script>
 
         var usersName = <?php echo $users_json; ?>;
-        // Armazenar a variável no localStorage
+        
         localStorage.setItem('usersGroup', JSON.stringify(usersName));
     </script>
 

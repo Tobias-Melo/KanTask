@@ -72,19 +72,15 @@ function openModalToEdit(id) {
      $columnInput.value = task.column;
      $creatorPut.value = task.creator;
 
-
 }
+
 
 function signOut() {
      google.accounts.id.disableAutoSelect();
      google.accounts.id.prompt((notification) => {
           if (notification.isNotDisplayed()) {
-               // The One Tap dialog is not displayed, perform your own sign-out logic here
-
                window.location.href = 'index.html';
-               // Clear local storage or perform any other necessary actions
           } else {
-               // The One Tap dialog is displayed, let it handle the sign-out
                notification.dismiss();
           }
      });
@@ -164,7 +160,6 @@ function createTask() {
           column: $columnInput.value,
      }
 
-
      taskList.push(newTask);
 
      localStorage.setItem("tasks", JSON.stringify(taskList));
@@ -208,12 +203,10 @@ function updateTask() {
 }
 
 
-
 function deleteTask() {
 
      const idToDelete = $idInput.value;
 
-     // Encontrar o índice do elemento com o ID correspondente
      const indexToDelete = taskList.findIndex(task => task.id === idToDelete);
 
 
@@ -222,7 +215,7 @@ function deleteTask() {
           localStorage.setItem("tasks", JSON.stringify(taskList));
           closeModal();
           generateCards();
-          /* Alert the copied text */
+          
           const toastContentDel = document.querySelector(".del-toast");
           const toastDel = new bootstrap.Toast(toastContentDel);
           document.getElementById("del-message").innerText = "Card deletado com sucesso!";
@@ -248,56 +241,44 @@ function changeColumn(task_id, column_id) {
      }
 
      localStorage.setItem("tasks", JSON.stringify(taskList));
-
      generateCards();
 }
 
 
-
 function dragstart_handler(ev) {
-     // Adiciona o id do elemento alvo para o objeto de transferência de dados
      ev.dataTransfer.setData("my_custom_data", ev.target.id);
      ev.dropEffect = "move";
 }
 
 function dragover_handler(ev) {
      ev.preventDefault();
-     // Define o dropEffect para ser do tipo move
      ev.dataTransfer.dropEffect = "move";
 }
 function drop_handler(ev) {
      ev.preventDefault();
-     // Pega o id do alvo e adiciona o elemento que foi movido para o DOM do alvo
      const task_id = ev.dataTransfer.getData("my_custom_data");
      const column_id = ev.target.dataset.column;
      changeColumn(task_id, column_id);
 }
 
-
 // GRUPOS E VISUALIZAÇÃO DELES
 
 function copyToClipboard() {
-     /* Get the text field */
+
      var copyText = document.getElementById("copyGroup");
 
-     /* Create a temporary input element */
      var tempInput = document.createElement("input");
      tempInput.value = copyText.value;
 
-     /* Append the temporary input to the document */
      document.body.appendChild(tempInput);
 
-     /* Select the text in the temporary input */
      tempInput.select();
-     tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+     tempInput.setSelectionRange(0, 99999);
 
-     /* Copy the text inside the temporary input to the clipboard */
      document.execCommand("copy");
 
-     /* Remove the temporary input from the document */
      document.body.removeChild(tempInput);
 
-     /* Alert the copied text */
      const toastContentCopy = document.querySelector(".copy-toast");
      const toastCopy = new bootstrap.Toast(toastContentCopy);
      document.getElementById("copy-message").innerText = "Texto copiado com sucesso!";

@@ -1,12 +1,12 @@
 function submitForm(e) {
-    e.preventDefault(); // Prevenir o envio padrão do formulário
+    e.preventDefault(); 
 
     const infos = localStorage.getItem("dados");
     const infosValid = JSON.parse(infos);
     const isCreateGroup = document.getElementById('group_name').value !== '';
     const oauth_uid = infosValid.id;
 
-    // Dados a serem enviados para o servidor
+    
     var requestData = {
         request_type: isCreateGroup ? 'create_group' : 'join_group',
         group_name: document.getElementById('group_name').value,
@@ -14,10 +14,6 @@ function submitForm(e) {
         oauth_uid: oauth_uid,
     };
 
-
-
-    // Faça uma requisição AJAX para o servidor (você pode usar fetch ou outras bibliotecas)
-    // Certifique-se de ajustar a URL conforme necessário
     fetch('auth_init.php', {
         method: 'POST',
         headers: {
@@ -28,7 +24,6 @@ function submitForm(e) {
         .then(response => {
             console.log('Status da resposta:', response.status);
 
-            // Verifique se a resposta é OK (status 200)
             if (response.ok) {
                 return response.text();
             } else {
@@ -39,15 +34,10 @@ function submitForm(e) {
 
             console.log(data)
             try {
-                // Tente analisar o JSON
                 const jsonData = JSON.parse(data);
-
-                // Manipule a resposta do servidor aqui
                 if (jsonData.status === 1) {
                     if (isCreateGroup) {
                         document.getElementById('created_group_code').value = jsonData.group_code;
-
-
 
                         localStorage.setItem("grupo", JSON.stringify({
                             "nome_gp": jsonData.group_name,
@@ -68,7 +58,6 @@ function submitForm(e) {
                     toast.show();
                 }
             } catch (error) {
-                // Se ocorrer um erro ao analisar o JSON, imprima no console
                 console.error('Erro ao analisar JSON:', error);
             }
         })
@@ -76,7 +65,7 @@ function submitForm(e) {
             console.error('Erro na requisição:', error);
         });
 
-    return false; // Evitar que o evento do formulário prossiga com o comportamento padrão
+    return false;
 }
 
 

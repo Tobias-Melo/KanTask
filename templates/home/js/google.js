@@ -49,10 +49,7 @@ function handleCredentialResponse(response) {
                               "id": jsonData.pdata.id,
                          }));
 
-                         
-
-
-                         // Redireciona para a página apropriada
+                    
                          if (jsonData.redirect) {
                               window.location.href = jsonData.redirect;
                          } else {
@@ -79,9 +76,6 @@ function handleCredentialResponse(response) {
           });
 }
 
-// Sign out the user
-
-
 window.onload = function () {
      if (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("")) {
           google.accounts.id.initialize({
@@ -98,7 +92,7 @@ window.onload = function () {
                     text: "continue_with",
                     logo_alignment: "left"
 
-               } // customization attributes
+               } 
           );
           google.accounts.id.renderButton(
                document.getElementById("buttonDiv_1"), {
@@ -133,6 +127,6 @@ window.onload = function () {
                shape: "pill",
                text: "continue_with"
           });
-          google.accounts.id.prompt(); // also display the One Tap dialog
+          google.accounts.id.prompt(); 
      }
 }
